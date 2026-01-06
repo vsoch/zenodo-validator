@@ -52,6 +52,8 @@ make
 make validate
 ```
 
+And you can also use the image provided: `ghcr.io/vsoch/zenodo-validator`.
+
 ## 🎁 Inputs
 
 | Input | Description | Default |
