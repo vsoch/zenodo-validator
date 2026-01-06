@@ -1,0 +1,23 @@
+name: 'Zenodo Metadata Validator'
+description: 'Validates .zenodo.json files with maximum style 🌈'
+inputs:
+  path:
+    description: 'Path to the .zenodo.json file'
+    required: false
+    default: '.zenodo.json'
+  schema_path:
+    description: 'Path to the JSON schema'
+    required: false
+    default: '/schema.json'
+  error_format:
+    description: 'Output format (text, json, pretty-json)'
+    required: false
+    default: 'text'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    INPUT_PATH: ${{ inputs.path }}
+    INPUT_SCHEMA_PATH: ${{ inputs.schema_path }}
+    INPUT_ERROR_FORMAT: ${{ inputs.error_format }}

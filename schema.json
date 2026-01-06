@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["title", "creators", "upload_type", "access_right"],
+  "properties": {
+    "title": { "type": "string" },
+    "upload_type": {
+      "type": "string",
+      "enum": ["publication", "poster", "presentation", "dataset", "image", "video", "software", "lesson", "other"]
+    },
+    "access_right": {
+      "type": "string",
+      "enum": ["open", "embargoed", "restricted", "closed"]
+    },
+    "creators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "affiliation": { "type": "string" },
+          "orcid": { "type": "string" },
+          "type": { "type": "string" }
+        }
+      }
+    },
+    "description": { "type": "string" },
+    "license": { "type": "string" },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "version": { "type": "string" },
+    "language": { "type": "string" },
+    "grants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": { "id": { "type": "string" } }
+      }
+    },
+    "communities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": { "identifier": { "type": "string" } }
+      }
+    }
+  }
+}

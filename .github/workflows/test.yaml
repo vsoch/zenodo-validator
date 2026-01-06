@@ -1,0 +1,14 @@
+name: Metadata CI
+on: [push, pull_request]
+
+jobs:
+  validate-zenodo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Zenodo Metadata
+        uses: ./
+        with:
+          path: '.zenodo.json'
