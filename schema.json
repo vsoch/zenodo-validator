@@ -5,10 +5,15 @@
   "required": ["creators", "access_right"],
   "properties": {
     "title": { "type": "string" },
+    "description": { "type": "string" },
+    "version": { "type": "string" },
+    "language": { "type": "string" },
+    "license": { "type": "string" },
     "upload_type": {
       "type": "string",
       "enum": ["publication", "poster", "presentation", "dataset", "image", "video", "software", "lesson", "other"]
     },
+    "publication_type": { "type": "string" },
     "access_right": {
       "type": "string",
       "enum": ["open", "embargoed", "restricted", "closed"]
@@ -17,6 +22,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": ["name"],
         "properties": {
           "name": { "type": "string" },
@@ -26,27 +32,60 @@
         }
       }
     },
-    "description": { "type": "string" },
-    "license": { "type": "string" },
+    "contributors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "affiliation": { "type": "string" },
+          "orcid": { "type": "string" },
+          "type": { "type": "string" }
+        }
+      }
+    },
     "keywords": {
       "type": "array",
       "items": { "type": "string" }
     },
-    "version": { "type": "string" },
-    "language": { "type": "string" },
+    "related_identifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["identifier", "relation"],
+        "properties": {
+          "identifier": { "type": "string" },
+          "relation": { "type": "string" },
+          "resource_type": { "type": "string" },
+          "scheme": { "type": "string" }
+        }
+      }
+    },
     "grants": {
       "type": "array",
       "items": {
         "type": "object",
-        "properties": { "id": { "type": "string" } }
+        "additionalProperties": false,
+        "properties": { 
+          "id": { "type": "string" } 
+        }
       }
     },
     "communities": {
       "type": "array",
       "items": {
         "type": "object",
-        "properties": { "identifier": { "type": "string" } }
+        "additionalProperties": false,
+        "properties": { 
+          "identifier": { "type": "string" } 
+        }
       }
-    }
+    },
+    "doi": { "type": "string" },
+    "prereserve_doi": { "type": "boolean" },
+    "notes": { "type": "string" }
   }
 }
