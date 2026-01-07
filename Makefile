@@ -1,6 +1,6 @@
 # --- Configuration ---
-IMAGE_NAME := zenodo-validator
-ZENODO_FILE := .zenodo.json
+IMAGE_NAME ?= zenodo-validator
+ZENODO_FILE ?= .zenodo.json
 PWD := $(shell pwd)
 
 # Default target: Build the container
