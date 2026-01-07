@@ -8,7 +8,19 @@
     "description": { "type": "string" },
     "version": { "type": "string" },
     "language": { "type": "string" },
-    "license": { "type": "string" },
+    "license": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string" }
+          }
+        }
+      ]
+    },
     "upload_type": {
       "type": "string",
       "enum": ["publication", "poster", "presentation", "dataset", "image", "video", "software", "lesson", "other"]
@@ -37,7 +49,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["name", "type"],
+        "required": ["name"],
         "properties": {
           "name": { "type": "string" },
           "affiliation": { "type": "string" },
@@ -47,6 +59,10 @@
       }
     },
     "keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "references": {
       "type": "array",
       "items": { "type": "string" }
     },
