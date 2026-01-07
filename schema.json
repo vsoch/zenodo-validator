@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": true,
-  "required": ["title", "creators", "upload_type", "access_right"],
+  "required": ["creators", "access_right"],
   "properties": {
     "title": { "type": "string" },
     "upload_type": {
