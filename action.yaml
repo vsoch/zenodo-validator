@@ -13,6 +13,10 @@ inputs:
     description: 'Output format (text, json, pretty-json)'
     required: false
     default: 'text'
+  allowed_extra_properties:
+    description: 'Comma-separated list of extra property names to allow (e.g., "pub_id,custom_field")'
+    required: false
+    default: ''
 
 runs:
   using: 'docker'
@@ -21,3 +25,4 @@ runs:
     INPUT_PATH: ${{ inputs.path }}
     INPUT_SCHEMA_PATH: ${{ inputs.schema_path }}
     INPUT_ERROR_FORMAT: ${{ inputs.error_format }}
+    INPUT_ALLOWED_EXTRA_PROPERTIES: ${{ inputs.allowed_extra_properties }}
