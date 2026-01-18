@@ -19,9 +19,10 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🛡️ Validate Zenodo Metadata
-        uses: vsoch/zenodo-validator@main 
+        uses: vsoch/zenodo-validator@main
         with:
           path: '.zenodo.json'
+          allowed_extra_properties: 'pub_id'  # Optional: allow extra properties
 ```
 
 
@@ -42,6 +43,7 @@ docker run --rm \
   -e INPUT_PATH=.zenodo.json \
   -e INPUT_SCHEMA_PATH=/schema.json \
   -e INPUT_ERROR_FORMAT=text \
+  -e INPUT_ALLOWED_EXTRA_PROPERTIES=pub_id \
   zenodo-validator
 ```
 
@@ -60,6 +62,21 @@ And you can also use the image provided: `ghcr.io/vsoch/zenodo-validator`.
 | :--- | :--- | :--- |
 | `path` 📍 | Where is your `.zenodo.json`? | `.zenodo.json` |
 | `error_format` 🎨 | `text`, `json`, or `pretty-json` | `text` |
+| `allowed_extra_properties` ✨ | Comma-separated list of extra property names to allow (e.g., `pub_id,custom_field`) | `''` (empty) |
+
+### 🔓 Allowing Extra Properties
+
+Some Invenio instances (like [RODARE](https://rodare.hzdr.de)) require additional properties beyond the standard Zenodo schema. You can explicitly allow these properties using the `allowed_extra_properties` input:
+
+```yaml
+- name: 🛡️ Validate Zenodo Metadata
+  uses: vsoch/zenodo-validator@main
+  with:
+    path: '.rodare.json'
+    allowed_extra_properties: 'pub_id'
+```
+
+This will allow the specified properties while still validating all other fields against the Zenodo schema. Multiple properties can be specified as a comma-separated list: `'pub_id,custom_field,another_field'`.
 
 ---
 
